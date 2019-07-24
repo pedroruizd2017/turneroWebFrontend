@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html ng-app="turneroWebLoginApp">
+    <head>
+        <title>TurneroWeb | 2018</title>
+        <!-- for-mobile-apps -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!-- //for-mobile-apps -->
+        <link href="elite_folder/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="grocery-folder/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <!-- font-awesome icons -->
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /> 
+        <!-- //font-awesome icons -->
+        <!-- js -->
+        <script src="grocery-folder/js/jquery-1.11.1.min.js"></script>
+        <!--<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />-->
+        <!-- //js -->
+        <script type="text/javascript" src="grocery-folder/js/move-top.js"></script>
+        <script type="text/javascript" src="grocery-folder/js/easing.js"></script>
+
+
+        <!--NEW STYLES-->
+        <script src="script/lib/angularjs.js" type="text/javascript"></script>
+        <script src="script/lib/ui-bootstrap-0.11.0.js" type="text/javascript"></script>
+        <link href="elite_folder/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+
+
+
+        <link href="alertasJS/css/popupmodal.css" rel="stylesheet" type="text/css"/>
+        <link href="alertasJS/mensajes/css-js/animate.css" rel="stylesheet" type="text/css"/>
+        <link href="alertasJS/mensajes/css-js/bird-alert-bulma.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+                });
+            });
+        </script>
+        <style>
+            .custab{
+                border: 1px solid #ccc;
+                padding: 5px;
+                margin: 5% 0;
+                box-shadow: 3px 3px 2px #ccc;
+                transition: 0.5s;
+            }
+            .custab:hover{
+                box-shadow: 3px 3px 0px transparent;
+                transition: 0.5s;
+            }
+        </style>
+        <!-- start-smoth-scrolling -->
+    </head>
+
+    <body ng-controller="mainMenuCtrl" >
+        <!-- header -->
+        <div class="agileits_header">
+            <div class="w3l_offers">
+                <a href="products.html">Gracias por su preferencia !</a>
+            </div>
+            <div class="w3l_search">
+                <form action="#" method="post"></form>
+            </div>
+            <div class="product_list_header">  
+                <form action="#" method="post" class="last">
+                    <fieldset>
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="display" value="1" />
+                        <input type="hidden" id='valor' value="false">
+                        <input type="button" name="submit" value="Mis Compras " class="button" ng-click="openModalPrecio()" />
+                    </fieldset>
+                </form>
+            </div>
+            <div class="w3l_header_right">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                        <div class="mega-dropdown-menu">
+                            <div class="w3ls_vegetables">
+                                <ul class="dropdown-menu drp-mnu">
+                                    <li><a href="#" ng-click="salir()">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>                  
+                        </div>	
+                    </li>
+                </ul>
+            </div>
+            <div class="w3l_header_right1">
+                <h2><a href="#">Contáctanos</a></h2>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--<br>-->
+        <br>
+        <!--<br>-->
+        <!--<div>aaaaaaaaa-->
+        <!--        <a id="simple_alert" class="demo_btn">Alert</a>
+                <a id="simple_confirm" class="demo_btn">Confirm</a>-->
+        <!--<button type="button" id="simple_prompt" class="demo_btn">Prompt</button>-->
+        <!--</div>-->
+        <!-- script-for sticky-nav -->
+        <script>
+                    $(document).ready(function () {
+                        var navoffeset = $(".agileits_header").offset().top;
+                        $(window).scroll(function () {
+                            var scrollpos = $(window).scrollTop();
+                            if (scrollpos >= navoffeset) {
+                                $(".agileits_header").addClass("fixed");
+                            } else {
+                                $(".agileits_header").removeClass("fixed");
+                            }
+                        });
+
+                    });
+        </script>
+
+        <div class="logo_products">
+            <div class="container">
+                <div class="w3ls_logo_products_left">
+                    <!--<h1 style="display: none"><a href="index.html"><b><span> {{nomEmpresa}} </span> {{nomEmpresa2}} </a></b></h1>-->
+                    <input type="hidden" ng-model="nomEmpresa">
+                    <input type="hidden" ng-model="nomEmpresa2">
+                    <h1><a href="index.html"><b><span id="nomEmpresa"> </span><div id="nomEmpresa2"></div></a></b></h1>
+                </div>
+                <div class="w3ls_logo_products_left1">
+                    <ul class="special_items">
+                        <li ><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span id="nombreUsuario"></span></a><i>/</i></li>
+                        <li ><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span id="telEmpresa"></span></a><i>/</i></li>
+                        <li ><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><a href="#"><span id="emailEmpresa"></span></a></a><i></i></li>
+                        <!--                        <li style="display: none"><a href="#"><i class="fa fa-user" aria-hidden="true"></i>{{nombreUsuario}}</a><i>/</i></li>
+                                                <li style="display: none"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{telEmpresa}}</a><i>/</i></li>
+                                                <li style="display: none"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">{{emailEmpresa}}</a></a><i></i></li>-->
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <br>
+        <!-- products-breadcrumb -->
+        <div class="products-breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Inicio</a><span></span></li>
+                </ul>
+            </div>
+        </div>
+        <!--        <br>
+                <br>-->
+        <br>
+        <!-- //products-breadcrumb -->
+        <div class="banner">
+            <div class="w3l_banner_nav_left">
+                <nav class="navbar nav_bottom">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <center><b style="color: #fa1818"></b></center>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+
+
+                        <ul class="nav navbar-nav nav_1" id="secciones">
+                            <!--                                <li><a href="#" ng-click="mostrarPorSeccion(1)">Panificados</a></li>
+                                                            <li><a href="#" ng-click="mostrarPorSeccion(2)">Inicios</a></li>
+                                                            <li><a href="#" ng-click="mostrarPorSeccion(3)">Cocinas</a></li>
+                                                            <li><a href="short-codes.html">Codigos Pequeños</a></li>
+                                                            <li><a href="pet.html">Comida de Mascoras</a></li>
+                                                            <li><a href="bread.html">Panificados y otros</a></li>-->
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div>
+            <div class="w3l_banner_nav_right">
+                <section class="slider">
+                    <div class="flexslider">
+                        <div class="top-brands">
+                            <div class="container-fluid">
+                                <!--<h3>{{nomSeccion}}</h3>-->
+                                <input type="hidden" ng-model="nomSeccion">
+                                <h3><span id="nomSeccion"></span></h3>
+                                <div class="agile_top_brands_grids" id="productos">
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- flexSlider -->
+                <link rel="stylesheet" href="grocery-folder/css/flexslider.css" type="text/css" media="screen" property="" />
+                <script defer src="grocery-folder/js/jquery.flexslider.js"></script>
+                <script type="text/javascript">
+                                    $(window).load(function () {
+                                        $('.flexslider').flexslider({
+                                            animation: "slide",
+                                            start: function (slider) {
+                                                $('body').removeClass('loading');
+                                            }
+                                        });
+                                    });
+                </script>
+                <!-- //flexSlider -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br>
+        <br>
+        <!-- newsletter -->
+        <!--        <div class="newsletter">
+                    <div class="container">
+                        <div class="w3agile_newsletter_left">
+                            <h3>sign up for our newsletter</h3>
+                        </div>
+                        <div class="w3agile_newsletter_right">
+                            <form action="#" method="post">
+                                <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                            this.value = 'Email';
+                                        }" required="">
+                                <input type="submit" value="subscribe now">
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>-->
+        <!-- //newsletter -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="clearfix"> </div>
+                <!--                <div class="agile_footer_grids">
+                                    <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                                        <div class="w3_footer_grid_bottom">
+                                            <h5>Conéctate con nosotros</h5>
+                                            <ul class="agileits_social_icons">
+                                                <li><a href="#" class="facebook"><i class="#" aria-hidden="true"><img src="img/social-media/social_facebook_fb_35.png" style="width: 36px;height: 36px"  alt=""/></i></a></li>
+                                                <li><a href="#" class="twitter"><i class="#" aria-hidden="true"><img src="img/social-media/social_Twitter_38.png" style="width: 36px;height: 36px" alt=""/></i></a></li>
+                                                <li><a href="#" class="instagram"><i class="#" aria-hidden="true"><img src="img/social-media/social_instagram_3.png" style="width: 36px;height: 36px"  alt=""/></i></a></li>
+                                                <li><a href="#" class="google"><i class="#" aria-hidden="true"><img src="img/social-media/social_youtube_23.png" style="width: 36px;height: 36px"  alt=""/></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>-->
+                <div class="wthree_footer_copy">
+                    <p>© Horacio-Diego#2019. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="width: 50%; align-content: center">
+                <div class="modal-content" >
+                    <div class="modal-body table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-striped custab" >
+                            <tr ng-repeat="rl in srvPendiente">
+                                <td>{{$index + 1}}.</td>
+                                <!--<td>{{rl.idServPendiente}}.</td>-->
+                                <td><span class="minicart-name" style="color: black">{{rl.descripcion}}</span></td>
+                                <!--<td><input style="width: 50px; height: 35px; font-size: 12px" type="text" id="data{{rl.idServPendiente}}" value="{{rl.cantidad}}" class="form-control"></td>-->
+                                <td><input style="width: 50px; height: 35px; font-size: 12px" type="text" id="data{{rl.idServPendiente}}" ng-change="changeVal(rl)" ng-model="rl.cantidad" class="form-control"></td>
+                                <td><a href="#" class="btn btn-danger btn-xs" ng-click="eliminar(rl)"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                <td style="color: black"><b>{{rl.montoServ| number : 0}}</b></td>
+
+                                <!--                                <td>{{rl.nodo.descriNodo}}</td>
+                                                                <td>{{rl.nodo.edificio.descriEdificio}}</td>
+                                                                <td>{{rl.nodo.dependencia.descriDependencia}}</td>
+                                                                <td>{{rl.nodo.componente.descriComponente}}</td>
+                                                                <td>{{rl.parametro.descriParametro}}</td>
+                                                                <td>{{rl.fechaIniPlan}} {{rl.horaIniPlan}}</td>
+                                                                <td>{{rl.fechaFinPlan}} {{rl.horaFinPlan}}</td>-->
+                                <td>
+                                    <!--                            <center><button class="btn btn-danger btn-sm" ng-click="eliminar(rl)" ><span class="glyphicon glyphicon-trash"></span></button>-->
+                                </td>
+                                <!--                            <select name="dropChange" ng-model="dropValue" ng-change="DropDownChnaged()">
+                                                                <option value="M">Male</option>
+                                                                <option value="F">Female</option>
+                                                            </select>-->
+                            </tr>
+                        </table>
+                        <h4 style="color: red">Subtotal:<b> {{totalGral}} Gs.</b></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger btn-sm" ng-click="confirmar(rl)">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2Title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="agileinfo_single">
+                            <h5>{{descripcion}}</h5>
+                            <div class="col-md-4 agileinfo_single_left">
+                                <center><span id="imagenProd"> </span></center>
+                                <!--<center><img id="example" src="img/sin_imagen.png" style="width: 110px; height: 110px" alt=" " class="img-responsive" /><center>-->
+                            </div>
+                            <div class="col-md-8 agileinfo_single_right">
+                                <div class="rating1">
+                                    <span class="starRating">
+                                        <input id="rating5" type="radio" name="rating" value="5">
+                                        <label for="rating5">5</label>
+                                        <input id="rating4" type="radio" name="rating" value="4" checked>
+                                        <label for="rating4">4</label>
+                                        <input id="rating3" type="radio" name="rating" value="3">
+                                        <label for="rating3">3</label>
+                                        <input id="rating2" type="radio" name="rating" value="2">
+                                        <label for="rating2">2</label>
+                                        <input id="rating1" type="radio" name="rating" value="1">
+                                        <label for="rating1">1</label>
+                                    </span>
+                                </div>
+                                <div class="w3agile_description">
+                                    <h4>Descripción del Producto :</h4>
+                                    <p>{{observacion}}</p>
+                                </div>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                                        <h4>{{precio}} <span></span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        <div class="row">
+                    <div class="col">
+                        <h1>Page test</h1>
+                        <hr>
+                        <br>
+                        <h2>Basic usage</h2>
+                        <button type="button" class="btn btn-primary" id="btnBasic">Basic</button>
+                    </div>
+                </div>-->
+
+        <script>
+            $(document).ready(function () {
+                $(".dropdown").hover(
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                            $(this).toggleClass('open');
+                        },
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                            $(this).toggleClass('open');
+                        }
+                );
+            });
+        </script>
+        <!-- here stars scrolling icon -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $().UItoTop({easingType: 'easeOutQuart'});
+
+            });
+        </script>
+        <!-- //here ends scrolling icon -->
+        <!--<script src="grocery-folder/js/minicart.js"></script>-->
+        <script>
+            //
+//
+//            paypal.minicart.render();
+//
+//            paypal.minicart.cart.on('checkout', function (evt) {
+//                var items = this.items(),
+//                        len = items.length,
+//                        total = 0,
+//                        i;
+//
+//                // Count the number of each item in the cart
+//                for (i = 0; i < len; i++) {
+//                    total += items[i].get('quantity');
+//                }
+//
+//                if (total < 1) {
+//                    alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+//                    evt.preventDefault();
+//                }
+//            });
+//
+//        </script>
+        <script src="alertasJS/js/popupmodal-min.js" type="text/javascript"></script>
+        <!-- for bootstrap working -->
+        <script type="text/javascript" src="elite_folder/js/bootstrap.js"></script>
+        <script src="script/lib/angular-route.js" type="text/javascript"></script>
+        <script src="script/lib/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="script/lib/ngCookies.js" type="text/javascript"></script>
+
+        <script src="alertasJS/mensajes/css-js/bird-alert.js" type="text/javascript"></script>
+        <script src="script/app_login.js" type="text/javascript"></script>
+
+        <script src="script/controller/menu-controller.js" type="text/javascript"></script>
+        <script src="script/service/retiro_pedido-service.js" type="text/javascript"></script>
+        <script src="script/service/cliente-service.js" type="text/javascript"></script>
+        <script src="script/service/empresa-service.js" type="text/javascript"></script>
+        <script src="script/service/seccion-service.js" type="text/javascript"></script>
+        <script src="script/service/articulo-service.js" type="text/javascript"></script>
+        <script src="script/service/serv_pendiente-service.js" type="text/javascript"></script>
+        <script src="script/service/cliente_pendiente-service.js" type="text/javascript"></script>
+        <script src="script/service/supervisor-service.js" type="text/javascript"></script>
+        <script src="script/service/usuario-service.js" type="text/javascript"></script>
+    </body>
+</html>

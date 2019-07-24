@@ -1,0 +1,14 @@
+{
+  "name": "TurneroAplicationFacturacion",
+  "version": "0.0.1",
+  "description": "App para turnos con AngularJS",
+  "main": "server.js",
+  "author": "Horacio Ruiz Diaz",
+  "dependencies": {
+    "express": "latest",
+    "method-override": "*",
+    "morgan": "*",
+    "satellizer": "*",
+    "nconf": "*" 
+  }
+}

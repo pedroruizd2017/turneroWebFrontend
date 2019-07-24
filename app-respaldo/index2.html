@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="turneroWebLoginApp">
+    <head>
+        <title>DomoAdmin | 2017</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--PARA FILTRO DE BUSQUEDA CON FECHA-->
+        <script src="script/lib/moment.js" type="text/javascript"></script>
+
+        <script src="script/lib/jquery.min.js" type="text/javascript"></script>
+        <link href="css/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="css/pickList.css" rel="stylesheet" type="text/css"/>-->
+        <script src="script/lib/angularjs.js" type="text/javascript"></script>
+        <script src="script/lib/ui-bootstrap-0.11.0.js" type="text/javascript"></script>
+        <link href="css/estiloCombo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/lib/sweet_alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="css/listBoxCss.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" type="image/png" href="img/icon_1.png" />
+        <script src="script/lib/angular-ip-adress-validate.js" type="text/javascript"></script>
+
+    </head>
+    <body ng-controller="menuCtrl" style="background-image: url('img/back01.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="account-wall">
+                        <div id="my-tab-content" class="tab-content">
+                            <div class="tab-pane active" id="login">
+                                <img class="profile-img" src="../img/login01.jpg" alt=""/>
+
+                                <form class="form-signin" id="#login">
+                                    <!--<input type="hidden" ng-model="contFallido">-->
+                                    <input type="text" ng-model="formData.usuarioUsuario" id="user" class="form-control" placeholder="Ingrese su usuario">
+                                    <input type="password" ng-model="formData.claveUsuario" style="display: none" id="pass" my-enter="doSomething()" class="form-control" placeholder="Ingrese su Contraseña">
+
+                                    <div id="mensajeFallido" style="display: none" class="alert alert-danger">
+                                        <strong>ATENCION!</strong> YA HAZ REALIZADO EL NUMERO MAXIMO DE INTENTOS, CONTACTA CON EL ADMINISTRADOR O RESTAURA TU CONTRASEÑA.
+                                    </div>
+                                    <div id="emailEnviado" style="display: none" class="alert alert-danger">
+                                        <strong>ATENCION!</strong> YA SE HA ENVIADO UN MENSAJE A SU CORREO ELECTRONICO ACCEDE PARA MAS INFORMACION.
+                                    </div>
+
+                                    <span id="mensajeError"></span>
+                                    <button type="button" id="btnIngresar" ng-click="ingresar()" class="btn btn-lg btn-block" style="background-color: #30a5ff; color: white; display: none;" >Ingresar</button>
+                                    <button type="button" id="btnSiguiente" ng-click="siguiente()" class="btn btn-lg btn-block" style="background-color: #30a5ff; color: white;" >Siguiente <span class="glyphicon glyphicon-menu-right"></span><span class="glyphicon glyphicon-menu-right"></span></button>
+                                    <button type="button" id="btnResetFaliido" ng-click="reset()" class="btn btn-lg btn-block" style="background-color: #30a5ff; color: white; display: none;" >Restaurar <span class="glyphicon glyphicon-refresh"></span></button>
+                                </form>
+                                <!--                                <div id="tabs" data-tabs="tabs">
+                                                                    <p class="text-center"><a id="linkCrearCuenta" href="#register" data-toggle="tab">Crear Cuenta</a></p>
+                                                                </div>-->
+
+                                <div class="row">
+                                    <div class="col-xs-1 col-sm-1 col-md-1"><p class="text-center"></div>
+                                    <div id="tabsOlvidoClave" data-tabs="tabs" class="col-xs-5 col-sm-5 col-md-5"><p class="text-center"><a id="linkOlvidoClave" href="#restablecerClave" ng-click="olvidoClave()" data-toggle="tab">Olvidó su Clave</a></p></div>
+                                    <div id="tabs" data-tabs="tabs">
+                                        <p class="text-center"><a id="linkCrearCuenta" href="#register" data-toggle="tab">Crear Cuenta</a></p>
+                                    </div>
+                                </div>
+                                <!--                                <div id="tabs2" data-tabs="tabs">
+                                                                    <p class="text-center"><a id="linkOlvidoClave" href="#register" data-toggle="tab">Olvidó su clave</a></p>
+                                                                </div>-->  
+                                <div id="tabsSalir" style="display: none" data-tabs="tabs">
+                                    <p class="text-center"><a id="linkVolver" href="#" ng-click="volver()" data-toggle="tab">Volver</a></p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="register" >
+                                <form name="myFormCuenta" class="form-signin">
+
+                                    <input type="text" class="form-control input-sm" ng-model="cuenta.nombrePersona" id="nombrePersona" name ="nombrePersona" placeholder="Ingrese su Nombre" required autofocus="">
+                                    <div style="color: red" id="nomPer"></div>
+                                    <!--<br>-->
+                                    <input type="text" class="form-control input-sm" id="apellidoPersona" name="apellidoPersona" ng-model="cuenta.apellidoPersona" placeholder="Ingrese su Apellido" required>
+                                    <div style="color: red" id="apePer"></div>
+                                    <!--<br>-->
+
+                                    <input type="email" class="form-control input-sm" id="emailPersona" name="emailPersona" ng-model="cuenta.emailPersona" placeholder="Ingrese su Correo Electrónico" required>
+                                    <div style="color: red" id="emailPer"></div>
+                                    <!--<br>-->
+
+                                    <input type="text" class="form-control input-sm" id="usuarioUsuario" name="usuarioUsuario" ng-model="usuario.usuarioUsuario" placeholder="Ingrese su usuario" required>
+                                    <div style="color: red" id="usuUsu"></div>
+                                    <!--<br>-->
+
+                                    <input type="password" class="form-control input-sm" id="claveUsuario" name="claveUsuario" ng-model="usuario.claveUsuario" placeholder="Ingrese su Contraseña" required>
+                                    <div style="color: red" id="claUsu"></div>
+                                    <!--<br>-->
+                                    <input type="password" class="form-control input-sm" my-enter-register="doSomething()" id="claveUsuarioConfirm" name="claveUsuarioConfirm" id="claveUsuarioConfirm" ng-model="usuario.claveUsuarioConfirm" placeholder="Confirme su Contraseña" required>
+                                    <div style="color: red" id="claUsuConf"></div>
+                                    <br>
+                                    <button type="button" ng-click="crearCuenta()" class="btn btn-lg btn-block" style="background-color: #30a5ff; color: white;" >Crear</button>
+                                    <!--<br>-->
+                                </form>
+                                <!--                        <div id="tabs" data-tabs="tabs">-->
+                                <center><a href="#login" data-toggle="tab">volver</a></center>
+                                <!--</div>-->
+                            </div>
+                            <div class="tab-pane" id="restablecerClave" >
+                                <form name="myFormRestablecerClave" class="form-signin">
+                                    <div class="panel panel-info" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
+                                        <div class="panel-heading"><center>Ingrese su Email para restablecer la Contraseña</center></div>
+                                        <!--                                        <div class="panel-heading"><center>Ingrese su Usuario o Email para restablecer su Contraseña</center></div>-->
+                                        <div class="panel-body">
+                                            <input type="email" class="form-control input-sm" id="emailPerson" name="emailPerson" ng-model="reset.emailPersona" placeholder="Ingrese su Correo Electrónico" required>
+                                            <div style="color: red" id="emailPerso"></div>
+                                            <br>
+                                            <button type="button" ng-click="resetClave()" class="btn btn-lg btn-block" style="background-color: #30a5ff; color: white;" >Restablecer</button>    
+                                            <br>
+                                            <center><a href="#login" data-toggle="tab">volver</a></center>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script/lib/bootstrap.min.js" type="text/javascript"></script>
+        <script src="script/pickList.js" type="text/javascript"></script>
+        <script src="script/lib/base64.js" type="text/javascript"></script>
+        <script src="script/lib/sweetalert-dev.js" type="text/javascript"></script>
+        <!--CHART-->  
+        <script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>  
+        <script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script>  
+        <!--FIN CHART-->
+
+        <script src="script/lib/customSelect.js" type="text/javascript"></script>
+
+        <script src="script/lib/angular-route.js" type="text/javascript"></script>
+        <script src="script/lib/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="script/lib/ngCookies.js" type="text/javascript"></script>
+        <script src="script/app_login.js" type="text/javascript"></script>
+        
+        <script src="script/controller/menu-controller.js" type="text/javascript"></script>
+        <!--        <script src="script/controller/usuario-controller_Login.js" type="text/javascript"></script>
+                <script src="script/controller/fallido-controller.js" type="text/javascript"></script>
+                <script src="script/controller/accesoFinger-controller.js" type="text/javascript"></script>
+                <script src="script/controller/tarifas-controller.js" type="text/javascript"></script>
+                <script src="script/controller/edificios-controller.js" type="text/javascript"></script>
+                <script src="script/controller/nodos-controller.js" type="text/javascript"></script>
+                <script src="script/controller/componentes-controller.js" type="text/javascript"></script>
+                <script src="script/controller/administracion-controller.js" type="text/javascript"></script>
+                <script src="script/controller/manejo-controller.js" type="text/javascript"></script>
+                <script src="script/controller/tipoPlaca-controller.js" type="text/javascript"></script>
+                <script src="script/controller/placaPin-controller.js" type="text/javascript"></script>
+                <script src="script/controller/tipoPlacaPin-controller.js" type="text/javascript"></script>
+                <script src="script/controller/plan-controller.js" type="text/javascript"></script>
+                <script src="script/controller/consumo-controller.js" type="text/javascript"></script>
+                <script src="script/controller/consumoGral-controller.js" type="text/javascript"></script>
+                <script src="script/controller/nodoPin-controller.js" type="text/javascript"></script>
+                <script src="script/controller/usuarioEdificio-controller.js" type="text/javascript"></script>
+                <script src="script/controller/sensor-controller.js" type="text/javascript"></script>
+                <script src="script/controller/sensorNodo-controller.js" type="text/javascript"></script>
+                <script src="script/controller/humedad-controller.js" type="text/javascript"></script>
+                <script src="script/controller/humo-controller.js" type="text/javascript"></script>
+                <script src="script/controller/movimiento-controller.js" type="text/javascript"></script>
+                <script src="script/controller/temperatura-controller.js" type="text/javascript"></script>
+        
+                <script src="script/service/usuario-service_Login.js" type="text/javascript"></script>
+                <script src="script/service/persona-service_Login.js" type="text/javascript"></script>
+                <script src="script/service/fallido-service.js" type="text/javascript"></script>
+                <script src="script/service/accesoFinger-service.js" type="text/javascript"></script>
+                <script src="script/service/tarifas-service.js" type="text/javascript"></script>
+                <script src="script/service/edificios-service.js" type="text/javascript"></script>
+                <script src="script/service/nodos-service.js" type="text/javascript"></script>
+                <script src="script/service/componentes-service.js" type="text/javascript"></script>
+                <script src="script/service/entidad-service.js" type="text/javascript"></script>
+                <script src="script/service/administracion-service.js" type="text/javascript"></script>
+                <script src="script/service/tipoPlaca-service.js" type="text/javascript"></script>
+                <script src="script/service/tipoPlacaPin-service.js" type="text/javascript"></script>
+                <script src="script/service/placaPin-service.js" type="text/javascript"></script>
+                <script src="script/service/plan-service.js" type="text/javascript"></script>
+                <script src="script/service/consumo-service.js" type="text/javascript"></script>
+                <script src="script/service/consumoGral-service.js" type="text/javascript"></script>
+                <script src="script/service/control_nodo-service.js" type="text/javascript"></script>
+                <script src="script/service/nodoPin-service.js" type="text/javascript"></script>
+                <script src="script/service/funcion-service.js" type="text/javascript"></script>
+                <script src="script/service/rol_funcion-service.js" type="text/javascript"></script>
+                <script src="script/service/usuarioRol-service.js" type="text/javascript"></script>
+                <script src="script/service/usuarioEdificio-service.js" type="text/javascript"></script>
+                <script src="script/service/tipoEdificioDependencia-service.js" type="text/javascript"></script>
+                <script src="script/service/sensorNodo-service.js" type="text/javascript"></script>
+                <script src="script/service/sensores-service.js" type="text/javascript"></script>
+                <script src="script/service/humedad-service.js" type="text/javascript"></script>
+                <script src="script/service/humo-service.js" type="text/javascript"></script>
+                <script src="script/service/movimiento-service.js" type="text/javascript"></script>
+                <script src="script/service/temperatura-service.js" type="text/javascript"></script>-->
+        <script>//
+//                                                        $('.popovers').popover();
+//                                                        window.setTimeout(function () {
+//                                                            $(".alerta").fadeTo(5000, 500).slideUp(500, function () {
+//                                                                $(this).remove();
+//                                                            });
+//                                                            // 500 : Time will remain on the screen
+//                                                        }, 500);
+//        </script>
+
+
+    </body>
+</html>

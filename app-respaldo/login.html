@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="turneroWebLoginApp">
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="css/assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="css/assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>TurneroWeb | 2018</title>
+
+
+        <!--PARA FILTRO DE BUSQUEDA CON FECHA-->
+        <script src="script/lib/moment.js" type="text/javascript"></script>
+
+        <link href="css/pickList.css" rel="stylesheet" type="text/css"/>
+        <script src="script/lib/angularjs.js" type="text/javascript"></script>
+
+        <script src="script/lib/ui-bootstrap-0.11.0.js" type="text/javascript"></script>
+        <link href="css/estiloCombo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+
+
+        <link href="css/lib/sweet_alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="css/listBoxCss.css" rel="stylesheet" type="text/css"/>
+
+        <!--        <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />-->
+        <script src="script/lib/angular-ip-adress-validate.js" type="text/javascript"></script>
+
+        <!--NUEVO PARA EL TECLADO-->
+        <!--<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />-->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
+        <!-- CSS Files -->
+        <link href="css/paraTeclado/material-kit.css" rel="stylesheet" type="text/css"/>
+        <link href="css/paraTeclado/estiloTecladoNumerico.css" rel="stylesheet" type="text/css"/>
+
+        <link href="alertasJS/css/popupmodal.css" rel="stylesheet" type="text/css"/>
+        <link href="alertasJS/mensajes/css-js/animate.css" rel="stylesheet" type="text/css"/>
+        <link href="alertasJS/mensajes/css-js/bird-alert-bulma.css" rel="stylesheet" type="text/css"/>
+        <style>
+            #mainMenu {
+                margin-top: 50px;
+                width: 80%;
+                margin-left: 10%;
+                margin-right: 10%;
+                position: fixed;
+            }
+        </style>
+    </head>
+
+    <!--<body class="" ng-controller="inicioCtrl" style="background-image: url('img/fondo/fondoHD.jpg')">-->
+    <body class="index-page sidebar-collapse" ng-controller="clienteCtrl" style="background: linear-gradient(rgba(255,255,255,.5), rgba(0, 0, 0, 0.5)), url(img/imagenBack.jpg);
+          position: relative;
+          content: ' ';
+          display: block;
+/*          margin-top: 80px;
+          margin-bottom: 51px;*/
+          /*position: absolute;*/
+          /*          width: 100%;
+                    height: 100%;*/
+          background-size: cover;
+          /*z-index: 1;*/
+          ">
+        <!--<body class="index-page sidebar-collapse" ng-controller="clienteCtrl">-->
+        <div class="section section-signup">
+            <!--                <body class="index-page sidebar-collapse" ng-controller="clienteCtrl">
+                                <div class="section section-signup" style="background-image: url('css/img/city.jpg');">-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                        <div class="card card-login">
+                            <!--<form class="form" method="" action="">-->
+                            <div class="card-header card-header-primary text-center">
+                                <h4 class="card-title">Realiza tu Pedido</h4>
+                                <div class="social-line">
+                                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="description text-center">NOMBRE DE LA EMPRESA S.A.</p>
+
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id="ciCliente" class="form-control" placeholder="Ingrese su N° de C.I.">
+                                </div>
+                            </div>
+                            <div class="card-body" id="cliNombre" style="display: none">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                    </div>
+
+                                    <input type="text" id="nombreCliente" class="form-control" placeholder="Ingrese Nombre ">                                    
+                                </div>
+                            </div>
+                            <div class="card-body" id="cliApellido" style="display: none">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id = "apellidoCliente" class="form-control" placeholder="Ingrese su Apellido ">
+                                </div>
+                            </div>
+
+                            <a href="#" class="btn btn-primary btn-block flatbtn" id="cliRegistrar" style="display: none" ng-click="registrarCli()">Registrar</a>
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-1 col-md-1"></div>
+                                    <div class="col-sm-10 col-md-10">
+                                        <!--<p>-->
+                                        <div class="col-md-offset-12 phone" id="oculta">
+                                            <div class="row1">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <!--<input type="tel" name="name" id="telNumber" class="form-control tel" value="" />-->
+                                                    <div class="num-pad">
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    1
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    2 <span class="small">
+
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    3 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    4 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    5 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    6 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    7 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    8 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    9 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4" disabled="disabled">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    -
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    0 <span class="small">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <div class="num">
+                                                                <div class="txt">
+                                                                    CL
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                    </div>
+                                                    <a href="#" class="btn btn-primary btn-block flatbtn" ng-click="ingresar()">INGRESAR</a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </div>
+                                        <!--</p>-->
+                                    </div>
+                                    <div class="col-sm-1 col-md-1"></div>
+                                </div>
+                            </div>
+
+                            <!--<div class="footer text-center">-->
+                            <!--<a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>-->
+                            <!--</div>-->
+                            <!--</form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
+        <script src="alertasJS/js/popupmodal-min.js" type="text/javascript"></script>
+        <script src="alertasJS/mensajes/css-js/bird-alert.js" type="text/javascript"></script>
+        <!--   Core JS Files   -->
+        <script src="css/assets/js/core/jquery.min.js"></script>
+        <script src="css/assets/js/core/popper.min.js"></script>
+        <script src="css/assets/js/core/bootstrap-material-design.min.js"></script>
+        <script src="css/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!-- Plugin for the momentJs  -->
+        <script src="css/assets/js/plugins/moment.min.js"></script>
+        <!--  Plugin for Sweet Alert -->
+        <script src="css/assets/js/plugins/sweetalert2.js"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="css/assets/js/plugins/jquery.validate.min.js"></script>
+        <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+        <script src="css/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+        <script src="css/assets/js/plugins/bootstrap-selectpicker.js"></script>
+        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+        <script src="css/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+        <script src="css/assets/js/plugins/jquery.dataTables.min.js"></script>
+        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+        <script src="css/assets/js/plugins/bootstrap-tagsinput.js"></script>
+        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="css/assets/js/plugins/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+        <script src="css/assets/js/plugins/fullcalendar.min.js"></script>
+        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+        <script src="css/assets/js/plugins/jquery-jvectormap.js"></script>
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="css/assets/js/plugins/nouislider.min.js"></script>
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>-->
+        <!-- Library for adding dinamically elements -->
+        <script src="css/assets/js/plugins/arrive.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+        <!-- Chartist JS -->
+        <script src="css/assets/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="css/assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="css/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="css/assets/demo/demo.js"></script>
+
+        <!--TO SERVER-->
+        <script src="script/lib/bootstrap.min.js" type="text/javascript"></script>
+        <script src="script/pickList.js" type="text/javascript"></script>
+        <script src="script/lib/base64.js" type="text/javascript"></script>
+        <script src="script/lib/sweetalert-dev.js" type="text/javascript"></script>
+
+        <!--CHART-->  
+        <!--<script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>-->  
+        <!--<script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script>-->  
+        <!--FIN CHART-->
+
+        <script src="script/lib/customSelect.js" type="text/javascript"></script>
+
+        <script src="script/lib/angular-route.js" type="text/javascript"></script>
+        <script src="script/lib/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="script/lib/ngCookies.js" type="text/javascript"></script>
+
+        <script src="script/app_login.js" type="text/javascript"></script>
+
+        <script src="script/controller/menu-controller.js" type="text/javascript"></script>
+        <script src="script/service/retiro_pedido-service.js" type="text/javascript"></script>
+        <script src="script/service/cliente-service.js" type="text/javascript"></script>
+        <script src="script/service/cliente_pendiente-service.js" type="text/javascript"></script>
+        <script>
+                                                                $(document).ready(function () {
+
+                                                                    $('.num').click(function () {
+                                                                        var num = $(this);
+                                                                        var text = $.trim(num.find('.txt').clone().children().remove().end().text());
+                                                                        var ciCliente = $('#ciCliente');
+                                                                        if (text.toUpperCase() === "CL") {
+                                                                            $(ciCliente).val("");
+                                                                        } else {
+                                                                            $(ciCliente).val(ciCliente.val() + text);
+                                                                        }
+                                                                    });
+                                                                });
+        </script>
+    </body>
+
+</html>

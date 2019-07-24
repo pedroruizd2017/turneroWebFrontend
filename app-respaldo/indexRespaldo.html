@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="turneroWebLoginApp">
+    <head>
+        <title>TurneroWeb | 2018</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--PARA FILTRO DE BUSQUEDA CON FECHA-->
+        <script src="script/lib/moment.js" type="text/javascript"></script>
+
+        <script src="script/lib/jquery.min.js" type="text/javascript"></script>
+        <!--<script src="css/alertify/lib/alertify.min.js" type="text/javascript"></script>-->
+        <link href="css/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/pickList.css" rel="stylesheet" type="text/css"/>
+        <script src="script/lib/angularjs.js" type="text/javascript"></script>
+        <!--<script src="script/lib/ui-bootstrap-tpls-2.5.0.js" type="text/javascript"></script>-->
+        <script src="script/lib/ui-bootstrap-0.11.0.js" type="text/javascript"></script>
+        <link href="css/estiloCombo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="css/checkBoxStyle.css" rel="stylesheet" type="text/css"/>-->
+
+        <link href="css/lib/sweet_alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="css/listBoxCss.css" rel="stylesheet" type="text/css"/>
+        <!--<link rel="icon" type="image/png" href="img/icon_1.png" />-->
+        <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+        <script src="script/lib/angular-ip-adress-validate.js" type="text/javascript"></script>
+
+        <style>
+            #mainMenu {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body ng-controller="inicioCtrl" style="background-image: url('img/fondo/fondoHD.jpg')">
+        <div class="container">
+            <!--            <img src="img/fondo/fondoHD.jpg" alt=""/>-->
+            <div class="row">
+                <div clas="col-md-4" id='mainMenu'>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" id="myModalLabel">Menú del Sistema</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4>Selecciona la operación a realizar:</h4>
+                                    <ul class="list-unstyled list-social">
+                                        <li>
+                                            <button type="button" class="btn btn-lg btn-default btn-block" ng-click="cambioTurno()">
+                                                <!--<a target="_blank" href="cambio.html">-->
+                                                <!--<i class="fa fa-vk"></i>-->
+                                                <span class=""><h4>Cambio de Turno</h4></span>
+                                                <!--</a>-->
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn btn-lg btn-default btn-block" ng-click="listTurno()">
+                                                <!--<a target="_blank" href="turnos.html">-->
+                                                <!--<i class="fa fa-vk"></i>-->
+                                                <span class=""><h4>Lista de Turnos</h4></span>
+                                                <!--</a>-->
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script/lib/bootstrap.min.js" type="text/javascript"></script>
+        <script src="script/pickList.js" type="text/javascript"></script>
+        <script src="script/lib/base64.js" type="text/javascript"></script>
+        <script src="script/lib/sweetalert-dev.js" type="text/javascript"></script>
+
+        <!--CHART-->  
+        <script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>  
+        <script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script>  
+        <!--FIN CHART-->
+
+        <script src="script/lib/customSelect.js" type="text/javascript"></script>
+
+        <script src="script/lib/angular-route.js" type="text/javascript"></script>
+        <script src="script/lib/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="script/lib/ngCookies.js" type="text/javascript"></script>
+
+        <script src="script/app_login.js" type="text/javascript"></script>
+
+        <script src="script/controller/menu-controller.js" type="text/javascript"></script>
+        <script src="script/service/retiro_pedido-service.js" type="text/javascript"></script>
+    </body>
+</html>
